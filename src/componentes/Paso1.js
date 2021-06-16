@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useFormulario } from "../hooks/useFormulario";
 
 export const Paso1 = (props) => {
-  const { datosPersonales, avanzaPaso } = props;
+  const { datosPersonales, avanzaPaso, setDatosPersonales } = props;
   const {
     datos: { nombre, apellidos, fechaNacimiento, email },
     setDato,
@@ -12,11 +12,29 @@ export const Paso1 = (props) => {
     avanzaPaso();
   };
   return (
-    <>
-      <h2>Paso 1: Datos personales</h2>
-      <form noValidate onSubmit={enviaPaso}>
-        <div className="form-group">
-          <label htmlFor="nombre">Nombre:</label>
+    <section className="container formulario-seccion shadow-sm  mb-5 bg-white rounded ">
+      <form
+        noValidate
+        className="row p-3 justify-content-center"
+        onSubmit={(e) => {
+          enviaPaso(e);
+          setDatosPersonales((datos) => {
+            return {
+              ...datos,
+              nombre: nombre,
+              apellidos: apellidos,
+              fechaNacimiento: fechaNacimiento,
+              email: email,
+            };
+          });
+        }}
+      >
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="nombre">
+              Nombre
+            </label>
+          </div>
           <input
             type="text"
             value={nombre}
@@ -25,8 +43,12 @@ export const Paso1 = (props) => {
             id="nombre"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="apellidos">Apellidos:</label>
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="apellidos">
+              Apellidos
+            </label>
+          </div>
           <input
             type="text"
             value={apellidos}
@@ -35,8 +57,12 @@ export const Paso1 = (props) => {
             className="form-control"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="fechaNacimiento">Fecha de nacimiento:</label>
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="fechaNacimiento">
+              Edad
+            </label>
+          </div>
           <input
             type="date"
             value={fechaNacimiento}
@@ -44,10 +70,13 @@ export const Paso1 = (props) => {
             id="fechaNacimiento"
             className="form-control"
           />
-          <span>Edad: </span>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Correo electrónico:</label>
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="email">
+              Email
+            </label>
+          </div>
           <input
             type="email"
             value={email}
@@ -56,11 +85,11 @@ export const Paso1 = (props) => {
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btn btn-primary mt-3 col-sm-8">
           Siguiente
         </button>
       </form>
-    </>
+    </section>
   );
 };
 

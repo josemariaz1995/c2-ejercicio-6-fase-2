@@ -1,4 +1,24 @@
-.contenedor {
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+/* input[type="text"] */
+.formulario-seccion {
   width: 500px;
-  margin: 0 auto;
+}
+section label:not(.recordar) {
+  width: 150px;
+}
+.vertical {
+  transform: rotate(-90deg);
+  font-weight: 700;
 }

@@ -36,16 +36,21 @@ function App() {
   };
   return (
     <>
-      <header>
-        <h1>Formulario</h1>
+      <header className="d-flex align-items-center justify-content-center p-5 bg-primary text-white border-bottom">
+        <h1>Crea una cuenta/logeate</h1>
       </header>
-      <div className="contenedor">
+      <main className="p-5 vw-100 d-flex justify-content-center align-items-center vh-100">
         {paso === 1 && (
-          <Paso1 avanzaPaso={avanzaPaso} datosPersonales={datosPersonales} />
+          <Paso1
+            avanzaPaso={avanzaPaso}
+            setDatosPersonales={setDatosPersonales}
+            datosPersonales={datosPersonales}
+          />
         )}
         {paso === 2 && (
           <Paso2
             avanzaPaso={avanzaPaso}
+            setDatosRegistro={setDatosRegistro}
             datosRegistro={datosRegistro}
             retrocedePaso={retrocedePaso}
           />
@@ -54,11 +59,19 @@ function App() {
           <Paso3
             datosAcceso={datosAcceso}
             avanzaPaso={avanzaPaso}
+            setDatosAcceso={setDatosAcceso}
             retrocedePaso={retrocedePaso}
           />
         )}
-        {paso === 4 && <Resumen retrocedePaso={retrocedePaso} />}
-      </div>
+        {paso === 4 && (
+          <Resumen
+            retrocedePaso={retrocedePaso}
+            datosPersonales={datosPersonales}
+            datosAcceso={datosAcceso}
+            datosRegistro={datosRegistro}
+          />
+        )}
+      </main>
     </>
   );
 }

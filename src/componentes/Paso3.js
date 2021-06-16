@@ -2,17 +2,34 @@ import PropTypes from "prop-types";
 import { useFormulario } from "../hooks/useFormulario";
 
 export const Paso3 = (props) => {
-  const { datosAcceso, avanzaPaso, retrocedePaso } = props;
+  const { datosAcceso, avanzaPaso, retrocedePaso, setDatosAcceso } = props;
   const {
     datos: { username, password, recordarPassword },
     setDato,
   } = useFormulario(datosAcceso);
   return (
-    <>
-      <h2>Paso 3: Login</h2>
-      <form noValidate onSubmit={avanzaPaso}>
-        <div className="form-group">
-          <label htmlFor="username">Nombre de usuario:</label>
+    <section className="container formulario-seccion shadow-sm  mb-5 bg-white rounded ">
+      <form
+        noValidate
+        className="row p-3 justify-content-center"
+        onSubmit={() => {
+          avanzaPaso();
+          setDatosAcceso((datos) => {
+            return {
+              ...datos,
+              password: password,
+              recordarPassword: recordarPassword,
+              username: username,
+            };
+          });
+        }}
+      >
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="username">
+              Username
+            </label>
+          </div>
           <input
             type="text"
             value={username}
@@ -21,8 +38,12 @@ export const Paso3 = (props) => {
             id="username"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña:</label>
+        <div className="input-group col-sm-12 mb-4">
+          <div className="input-group-prepend ">
+            <label className="input-group-text" htmlFor="password">
+              Contraseña
+            </label>
+          </div>
           <input
             type="password"
             value={password}
@@ -31,7 +52,7 @@ export const Paso3 = (props) => {
             className="form-control"
           />
         </div>
-        <div className="form-check">
+        <div className="form-check col-sm-12 ml-5">
           <input
             type="checkbox"
             id="recordarPassword"
@@ -43,14 +64,17 @@ export const Paso3 = (props) => {
             Recordar contraseña
           </label>
         </div>
-        <button className="btn btn-info" onClick={retrocedePaso}>
+        <button
+          className="btn btn-primary mt-3 col-sm-4 mr-3"
+          onClick={retrocedePaso}
+        >
           Anterior
         </button>
-        <button className="btn btn-info" type="submit">
+        <button className="btn btn-primary mt-3 col-sm-4" type="submit">
           Acceder
         </button>
       </form>
-    </>
+    </section>
   );
 };
 
