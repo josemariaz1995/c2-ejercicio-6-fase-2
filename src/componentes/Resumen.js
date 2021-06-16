@@ -4,8 +4,8 @@ export const Resumen = (props) => {
   const {
     retrocedePaso,
     datosPersonales: { nombre, apellidos, fechaNacimiento, email },
-    datosAcceso: { username, password },
-    datosRegistro: { recordarPassword },
+    datosRegistro: { username, password },
+    datosAcceso: { recordarPassword },
   } = props;
   return (
     <>
